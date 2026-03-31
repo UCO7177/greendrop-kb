@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenDrop — Community Knowledge Base</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep:   #1a3d0f;
+    --green-mid:    #2d6a1f;
+    --green-bright: #3d8c2a;
+    --green-soft:   #a8d48a;
+    --green-pale:   #e8f5e0;
+    --amber:        #c47d12;
+    --amber-pale:   #fdf3dc;
+    --teal:         #0d6e5a;
+    --teal-pale:    #e0f4ef;
+    --coral:        #b53d1e;
+    --coral-pale:   #fdeee9;
+    --ink:          #1c1f1a;
+    --ink-mid:      #4a4f47;
+    --ink-light:    #7a8077;
+    --paper:        #faf9f5;
+    --paper-warm:   #f2f0e8;
+    --white:        #ffffff;
+    --border:       #ddd9ce;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    border-bottom: 2px solid var(--green-mid);
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-brand-dot {
+    width: 28px; height: 28px;
+    background: var(--green-soft);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .nav-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--green-soft); }
+
+  .nav-cta {
+    background: var(--green-bright);
+    color: #fff !important;
+    padding: 7px 16px;
+    border-radius: 4px;
+    transition: background 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--green-soft) !important; color: var(--green-deep) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-deep);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -100px; top: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-soft);
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(168,212,138,0.35);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green-soft);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-search {
+    display: flex;
+    gap: 0;
+    max-width: 560px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .hero-search input {
+    flex: 1;
+    padding: 14px 18px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: none;
+    outline: none;
+  }
+
+  .hero-search input::placeholder { color: rgba(255,255,255,0.4); }
+
+  .hero-search button {
+    padding: 14px 24px;
+    background: var(--green-bright);
+    color: #fff;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .hero-search button:hover { background: var(--green-soft); color: var(--green-deep); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--green-mid);
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--green-soft);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebar-section {
+    margin-bottom: 2rem;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.6rem;
+    padding-left: 10px;
+  }
+
+  .sidebar-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: background 0.1s, color 0.1s;
+    border-left: 2px solid transparent;
+  }
+
+  .sidebar-nav a:hover {
+    background: var(--green-pale);
+    color: var(--green-deep);
+    border-left-color: var(--green-bright);
+  }
+
+  .sidebar-nav a.active {
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-weight: 700;
+    border-left-color: var(--green-bright);
+  }
+
+  .sidebar-icon { font-size: 15px; width: 20px; text-align: center; }
+
+  .sidebar-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-light);
+    background: var(--paper-warm);
+    padding: 1px 6px;
+    border-radius: 20px;
+  }
+
+  /* ── CONTENT ── */
+  .content-area { min-width: 0; }
+
+  .section-block {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon-block {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  /* ── ARTICLE CARDS ── */
+  .article-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  .article-card:hover { border-color: #b8c8b0; }
+
+  .article-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .article-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .article-trigger-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .tag-green { background: var(--green-pale); color: var(--green-mid); }
+  .tag-amber { background: var(--amber-pale); color: var(--amber); }
+  .tag-teal { background: var(--teal-pale); color: var(--teal); }
+  .tag-coral { background: var(--coral-pale); color: var(--coral); }
+
+  .article-trigger h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .article-chevron {
+    font-size: 12px;
+    color: var(--ink-light);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .article-card.open .article-chevron { transform: rotate(180deg); }
+
+  .article-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-card.open .article-body { display: block; }
+
+  .article-body p {
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── DO / DON'T ── */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.25rem 0;
+  }
+
+  .do-box, .dont-box {
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+  }
+
+  .do-box { background: var(--teal-pale); border-left: 3px solid var(--teal); }
+  .dont-box { background: var(--coral-pale); border-left: 3px solid var(--coral); }
+
+  .do-box h4 { color: var(--teal); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .dont-box h4 { color: var(--coral); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+
+  .do-box ul, .dont-box ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  .do-box li, .dont-box li {
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.4;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .do-box li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+  .dont-box li::before { content: '✗'; position: absolute; left: 0; color: var(--coral); font-weight: 700; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 14px; margin: 1.25rem 0; }
+
+  .step { display: flex; gap: 14px; }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .step-content span {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--amber);
+    background: var(--amber-pale);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 15px;
+    margin: 1rem 0;
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .callout strong { color: var(--amber); }
+
+  /* ── PILL GRID ── */
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0; }
+
+  .pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    background: var(--paper-warm);
+    color: var(--ink-mid);
+  }
+
+  /* ── IMPACT BOX ── */
+  .impact-box {
+    background: var(--green-pale);
+    border: 1px solid rgba(61,140,42,0.2);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .impact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--green-mid);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .impact-label { font-size: 14px; color: var(--green-mid); line-height: 1.5; }
+
+  /* ── BATTERY TABLE ── */
+  .battery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+    margin: 1rem 0;
+  }
+
+  .battery-cell {
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+
+  .battery-cell strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 3px;
+  }
+
+  /* ── CHATBOT BANNER ── */
+  .chatbot-banner {
+    background: var(--green-deep);
+    border-radius: 10px;
+    padding: 2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .chatbot-banner-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .chatbot-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .chatbot-banner p {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  .chatbot-banner-btn {
+    margin-left: auto;
+    background: var(--green-soft);
+    color: var(--green-deep);
+    border: none;
+    padding: 11px 22px;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .chatbot-banner-btn:hover { background: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 2rem;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .main-container { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .nav-links { display: none; }
+    .do-dont { grid-template-columns: 1fr; }
+    .stats-bar { gap: 1.5rem; }
+    .chatbot-banner { flex-direction: column; }
+    .chatbot-banner-btn { margin-left: 0; width: 100%; text-align: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-block { animation: fadeUp 0.4s ease both; }
+  .section-block:nth-child(2) { animation-delay: 0.05s; }
+  .section-block:nth-child(3) { animation-delay: 0.1s; }
+  .section-block:nth-child(4) { animation-delay: 0.15s; }
+  .section-block:nth-child(5) { animation-delay: 0.2s; }
+  .section-block:nth-child(6) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-brand-dot">🌿</div>
+    <span class="nav-brand-name">GreenDrop</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#cooking-oil">Cooking Oil</a></li>
+    <li><a href="#batteries">Batteries</a></li>
+    <li><a href="#pickup">Pickup Program</a></li>
+    <li><a href="#impact">Why It Matters</a></li>
+    <li><a href="#chat" class="nav-cta">Chat with Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Community Knowledge Base</span>
+    <h1>Everything you need<br>to <em>make an impact</em><br>from your kitchen.</h1>
+    <p>Guides for cooking oil recycling, battery drop-off, and why it all matters for our neighborhood, our pipes, and Biscayne Bay.</p>
+    <div class="hero-search">
+      <input type="text" id="heroSearch" placeholder="Search — e.g. 'Can I recycle bacon grease?'" />
+      <button onclick="handleSearch()">Search</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">190</div>
+    <div class="stat-label">Pilot Homes</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1 gal</div>
+    <div class="stat-label">Avg. per household / month</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">~7 lbs</div>
+    <div class="stat-label">CO₂ offset per gallon recycled</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2 wks</div>
+    <div class="stat-label">Pickup cycle</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Cooking Oil</div>
+      <ul class="sidebar-nav">
+        <li><a href="#cooking-oil" class="active"><span class="sidebar-icon">🫙</span> What we accept <span class="sidebar-count">4</span></a></li>
+        <li><a href="#packing"><span class="sidebar-icon">📦</span> Packing guide <span class="sidebar-count">3</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Batteries</div>
+      <ul class="sidebar-nav">
+        <li><a href="#batteries"><span class="sidebar-icon">🔋</span> Battery recycling <span class="sidebar-count">4</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Program</div>
+      <ul class="sidebar-nav">
+        <li><a href="#pickup"><span class="sidebar-icon">🔄</span> Pickup & swap <span class="sidebar-count">3</span></a></li>
+        <li><a href="#impact"><span class="sidebar-icon">🌊</span> Why it matters <span class="sidebar-count">3</span></a></li>
+        <li><a href="#troubleshoot"><span class="sidebar-icon">🛠</span> Troubleshooting <span class="sidebar-count">3</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Get Help</div>
+      <ul class="sidebar-nav">
+        <li><a href="#chat"><span class="sidebar-icon">💬</span> Ask the assistant</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content-area">
+
+    <!-- COOKING OIL -->
+    <section class="section-block" id="cooking-oil">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:var(--green-pale);">🫙</div>
+        <div>
+          <h2>Cooking Oil — What We Collect</h2>
+          <p>What goes in the jug, what doesn't, and how to handle fats and solids.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Accepted Oils</span>
+              <h3>What cooking oils does GreenDrop collect?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>We accept virtually all used cooking oils from household kitchens. If it cooked your food at some point, we want it back.</p>
+            <div class="do-dont">
+              <div class="do-box">
+                <h4>Accepted</h4>
+                <ul>
+                  <li>Vegetable / canola oil</li>
+                  <li>Sunflower oil</li>
+                  <li>Olive oil (used)</li>
+                  <li>Coconut oil (liquid form)</li>
+                  <li>Peanut / sesame oil</li>
+                  <li>Lard or bacon grease (melted)</li>
+                  <li>Fish fry oil</li>
+                  <li>Mixed frying oils</li>
+                </ul>
+              </div>
+              <div class="dont-box">
+                <h4>Not accepted</h4>
+                <ul>
+                  <li>Motor oil or lubricants</li>
+                  <li>Paint, solvents, chemicals</li>
+                  <li>Expired sealed / unopened oil</li>
+                  <li>Water or rinsed-pan liquid</li>
+                  <li>Dairy-based sauces or milk</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout"><strong>Quick rule:</strong> If it smells like food and was hot in a pan — it belongs in the jug, not the drain.</div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Contaminants</span>
+              <h3>What must I keep OUT of the collection jug?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Contaminants can ruin entire collection batches, reduce the buyer value of the oil, and hurt your household's impact record. Here's what to avoid:</p>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">✗</div>
+                <div class="step-content">
+                  <strong>Water or dishwater</strong>
+                  <span>Even small amounts cause oil to separate and go rancid faster. Let the pan cool and pour off only the oil — don't rinse.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">✗</div>
+                <div class="step-content">
+                  <strong>Motor oil or petroleum products</strong>
+                  <span>These are hazardous waste and require a completely separate collection stream. Never mix them with cooking oil.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">✗</div>
+                <div class="step-content">
+                  <strong>Household chemicals</strong>
+                  <span>Bleach, cleaners, paint, solvents — none belong near the jug under any circumstances.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">✗</div>
+                <div class="step-content">
+                  <strong>Dairy or egg-heavy sauces</strong>
+                  <span>Cream sauces and egg residues can spoil the batch. Pour off liquid oil only; scrape solids into the trash first.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Storage</span>
+              <h3>How do I store the jug between pickups?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>You've got two weeks between pickups. Here's how to keep the jug safe, smell-free, and your kitchen happy.</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Let oil cool completely (30–60 minutes)</strong><span>Hot oil can warp the HDPE jug and degrade the cap seal. Always wait before pouring.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Keep it tightly sealed between uses</strong><span>The cap prevents odor, oxidation, and spill risk. Screw it on fully after every pour.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Store in a cool, dark spot</strong><span>Under the sink, in a pantry, or the garage all work well. Avoid direct sunlight.</span></div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Don't overfill</strong><span>Leave 1–2 inches of headspace so oil doesn't expand and push past the cap seal.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-teal">Solid Fats</span>
+              <h3>What about bacon grease, lard, or solid coconut oil?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Solid fats are absolutely accepted — they just need a moment of patience.</p>
+            <div class="callout"><strong>Rule of thumb:</strong> If you can pour it, we can take it. If it's solid at room temperature, let it warm to liquid first — or add it to liquid oil already in the jug and let it melt in.</div>
+            <div class="do-dont">
+              <div class="do-box">
+                <h4>Good approach</h4>
+                <ul>
+                  <li>Let solidified fat warm to liquid</li>
+                  <li>Mix into liquid oil in the jug</li>
+                  <li>Collect in small jar, pour when liquid</li>
+                </ul>
+              </div>
+              <div class="dont-box">
+                <h4>Avoid</h4>
+                <ul>
+                  <li>Scooping solid fat directly into jug</li>
+                  <li>Pouring down the drain "just this once"</li>
+                  <li>Throwing it in the trash (still a FOG risk)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PACKING GUIDE -->
+    <section class="section-block" id="packing">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:var(--amber-pale);">📦</div>
+        <div>
+          <h2>Packing & Prep Guide</h2>
+          <p>How to fill your jug correctly — from pan to pickup, in five easy steps.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Step-by-Step</span>
+              <h3>Complete guide: pan to jug</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>The whole routine takes under 90 seconds. Here it is from start to finish:</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Cook your meal — enjoy it</strong><span>You're already doing the hard part.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Let the pan cool (30–60 min)</strong><span>Don't rush. Hot oil is a burn risk and damages the jug's cap seal.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Strain food particles out</strong><span>Use a mesh strainer over a funnel into the jug. Food bits clog the system downstream — strain them into the trash first.</span></div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Pour slowly and seal</strong><span>Fill to the shoulder of the jug (not the neck). Wipe the lip if oily, then screw the cap fully closed.</span></div></div>
+              <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Set it out on pickup morning</strong><span>Place by your front door or driveway edge by 7 AM on your assigned day. We'll swap it for a clean empty.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Straining</span>
+              <h3>Do I really need to strain the oil?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Yes — but it's simple. You don't need special equipment. Here's what works:</p>
+            <div class="do-dont">
+              <div class="do-box">
+                <h4>Works well</h4>
+                <ul>
+                  <li>Fine mesh kitchen strainer</li>
+                  <li>Cheesecloth over a funnel</li>
+                  <li>Coffee filter (slower, very clean)</li>
+                  <li>Reusable silicone funnel strainer</li>
+                </ul>
+              </div>
+              <div class="dont-box">
+                <h4>Skip it</h4>
+                <ul>
+                  <li>Pouring straight without straining</li>
+                  <li>Using paper towels as a filter</li>
+                  <li>Rinsing the pan into the jug (adds water)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout"><strong>Why it matters:</strong> Food particles accelerate spoilage and reduce oil value at the buyer. Cleaner oil = better impact score for your household.</div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Jug Care</span>
+              <h3>How do I take care of the collection jug?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>The labeled HDPE jug is yours to use for the program duration. Treat it like a reusable container:</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">✓</div><div class="step-content"><strong>Keep the label visible</strong><span>Don't peel or cover the GreenDrop label. It ties your household data to the right pickup record and tracks the jug through the swap cycle.</span></div></div>
+              <div class="step"><div class="step-num">✓</div><div class="step-content"><strong>Wipe the exterior if it gets oily</strong><span>A paper towel does the job. A clean jug makes pickup easier and your neighbors appreciate it.</span></div></div>
+              <div class="step"><div class="step-num">✗</div><div class="step-content"><strong>Don't wash with soap and water</strong><span>Soap residue and water both contaminate the oil. The jug doesn't need to be clean inside — just the right stuff in it.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BATTERIES -->
+    <section class="section-block" id="batteries">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:var(--coral-pale);">🔋</div>
+        <div>
+          <h2>Battery Recycling</h2>
+          <p>Which batteries we accept, how to prepare them, and what to do with the ones we can't take.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Accepted Types</span>
+              <h3>What types of batteries does GreenDrop accept?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>We collect household batteries on the same pickup day as cooking oil — just place them in a small labeled bag next to your jug.</p>
+            <div class="battery-grid">
+              <div class="battery-cell"><strong>AA / AAA</strong>Remotes, toys, devices</div>
+              <div class="battery-cell"><strong>C / D cells</strong>Flashlights, radios</div>
+              <div class="battery-cell"><strong>9-volt</strong>Smoke detectors</div>
+              <div class="battery-cell"><strong>Button / coin cells</strong>Watches, key fobs</div>
+              <div class="battery-cell"><strong>Rechargeable NiMH</strong>Small packs, tools</div>
+              <div class="battery-cell"><strong>Phone batteries</strong>Removed from device</div>
+            </div>
+            <div class="callout"><strong>Not sure?</strong> If it's smaller than your fist and powered a household device, it's almost certainly accepted. When in doubt, bag it and include it.</div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Prep Required</span>
+              <h3>How do I prepare batteries for pickup?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>A little prep prevents hazards and keeps the collection safe for everyone on the route:</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Tape the terminals on 9-volt batteries</strong><span>The two posts on a 9V can touch metal and cause a spark or fire in a bag. A small strip of electrical or masking tape across both terminals prevents this — this step is mandatory for 9Vs.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Place in a zip-lock or small paper bag</strong><span>Don't mix loose batteries with coins, keys, or foil. Contact between terminals generates heat. A small bag per type is ideal.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Label the bag "BATTERIES – GREENDROP"</strong><span>This helps us sort correctly at the consolidation point and keeps your impact stats accurate.</span></div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Set next to your oil jug on pickup day</strong><span>Same spot, same schedule. That's it.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-coral">Not Accepted</span>
+              <h3>What batteries can't GreenDrop take?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Some battery types require specialized hazmat handling that's beyond our current program scope. For these, here are the best local alternatives:</p>
+            <div class="do-dont">
+              <div class="do-box">
+                <h4>Where to take them instead</h4>
+                <ul>
+                  <li>Home Depot / Lowe's — lithium-ion drop boxes</li>
+                  <li>Best Buy — in-store battery recycling</li>
+                  <li>Miami-Dade household hazmat events</li>
+                  <li>Call2Recycle drop points (call2recycle.org)</li>
+                </ul>
+              </div>
+              <div class="dont-box">
+                <h4>We cannot accept</h4>
+                <ul>
+                  <li>Car / automotive batteries</li>
+                  <li>Swollen or leaking batteries</li>
+                  <li>Large lithium packs (e-bikes, power tools)</li>
+                  <li>Industrial or commercial batteries</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-teal">Local Impact</span>
+              <h3>Why does battery disposal matter locally?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Batteries tossed in household trash end up in the South Dade Landfill — less than 2 miles from Black Point Marina. When casing degrades, heavy metals like lead, cadmium, and mercury leach into groundwater and eventually reach Biscayne Bay.</p>
+            <div class="impact-box">
+              <div class="impact-num">1</div>
+              <div class="impact-label">button cell battery can contaminate up to 1 square meter of soil for 50+ years when landfilled</div>
+            </div>
+            <p>By combining battery and oil recycling in one bi-weekly pickup, we remove the biggest barrier to responsible disposal: the need to make a special trip. It's already in your routine.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PICKUP -->
+    <section class="section-block" id="pickup">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:#EEEDFE;">🔄</div>
+        <div>
+          <h2>Pickup & Swap Program</h2>
+          <p>How the bi-weekly jug swap works, schedule details, and how to join.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">How It Works</span>
+              <h3>How does the jug swap model work?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>No drop-offs. No special trips. No appointments. The program comes to you.</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>You receive a labeled 1-gallon HDPE jug</strong><span>It arrives clean, labeled with your address code, and ready to fill. We keep a second set of jugs in rotation so you're never without a container.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Fill it over the next two weeks</strong><span>Pour cooled, strained oil in after cooking. Average household fills about half a jug per two-week cycle.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Set it out on pickup morning by 7 AM</strong><span>Place by your front door or driveway edge on your assigned day. We'll swap it for a clean empty.</span></div></div>
+              <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Your data gets logged</strong><span>Each jug pickup is recorded: gallons collected, pickup date, household ID. That's your contribution to the neighborhood's impact report.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Schedule</span>
+              <h3>What's the pickup schedule?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <div class="callout"><strong>During the pilot phase,</strong> your specific pickup day is assigned at enrollment based on your street zone. You'll receive a reminder the evening before via your preferred contact method.</div>
+            <div class="steps">
+              <div class="step"><div class="step-num">📅</div><div class="step-content"><strong>Bi-weekly cycle</strong><span>Every 14 days — same day, same time, same driver. Consistency is what makes the program scale.</span></div></div>
+              <div class="step"><div class="step-num">📅</div><div class="step-content"><strong>Holiday adjustments</strong><span>If your pickup falls on a federal holiday, it shifts one business day forward. You'll be notified in advance.</span></div></div>
+              <div class="step"><div class="step-num">📅</div><div class="step-content"><strong>Missed pickup?</strong><span>Keep the full jug and set it out on the next scheduled day. Sealed oil keeps fine for an additional two weeks.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Join the Route</span>
+              <h3>How do I enroll in the program?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>The pilot launched with 190 homes in our neighborhood. Enrollment is by address — no fees, no contracts.</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Confirm your address is on the route</strong><span>All homes in the neighborhood boundary are eligible. Message the chatbot with your street address to verify.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Receive your starter kit</strong><span>Your jug, a quick-start card, and your pickup day assignment arrive within one route cycle of enrollment.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Start pouring</strong><span>You're in the program. Your household starts generating verified impact data from the very first pickup.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="section-block" id="impact">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:var(--teal-pale);">🌊</div>
+        <div>
+          <h2>Why It Matters</h2>
+          <p>The local environmental case — your pipes, Biscayne Bay, and the sewer system underneath us.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-teal">Sewer System</span>
+              <h3>How does cooking oil damage the sewer system?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>FOG — fats, oils, and grease — is the #1 cause of sewer blockages in Miami-Dade County. When poured down the drain, oil cools, congeals, and builds up on pipe walls over years, eventually causing backups and overflows.</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">1</div><div class="step-content"><strong>It seems liquid — until it isn't</strong><span>Oil feels harmless when warm. As it cools in your drain pipe, it sticks to the walls and catches everything else flowing by.</span></div></div>
+              <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Buildup accelerates over time</strong><span>One household's grease alone won't block a main line — but 50 households across two years absolutely can.</span></div></div>
+              <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Overflows reach the bay</strong><span>When sewer mains back up, overflow points near South Dade discharge into wetlands and eventually Biscayne Bay.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Your Home First</span>
+              <h3>How does this protect my own pipes?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Before the bay, before the sewer system — your own plumbing is the first thing at risk.</p>
+            <div class="callout"><strong>The honest math:</strong> Calling a plumber to clear a grease blockage typically costs $200–$500. The collection jug is free. This program literally pays you back.</div>
+            <div class="steps">
+              <div class="step"><div class="step-num">🏠</div><div class="step-content"><strong>Kitchen drain lines</strong><span>Grease accumulates fastest in the 20 feet of pipe between your sink and the main sewer line — and that section is almost always the homeowner's financial responsibility to maintain.</span></div></div>
+              <div class="step"><div class="step-num">🏠</div><div class="step-content"><strong>Septic systems</strong><span>If your home uses a septic system, grease is especially damaging — it forms a hardened scum mat that kills beneficial bacteria and can cause full system failure.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-teal">Local Stakes</span>
+              <h3>What are the local environmental stakes?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Our neighborhood sits at the intersection of several sensitive systems. What goes down our drains matters more here than almost anywhere else in the county.</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">🌊</div><div class="step-content"><strong>Black Point Marina</strong><span>Less than a mile from the neighborhood. Sewer overflows in South Dade have historically triggered fishing and swimming advisories at marina access points.</span></div></div>
+              <div class="step"><div class="step-num">🏭</div><div class="step-content"><strong>South Dade Wastewater Treatment Plant</strong><span>The plant operates under a federal Consent Decree that legally requires Miami-Dade to reduce FOG loading in the sewer system. Our collected data contributes directly to that compliance record.</span></div></div>
+              <div class="step"><div class="step-num">🗑️</div><div class="step-content"><strong>South Dade Landfill</strong><span>Every gallon of oil diverted is a gallon that doesn't enter landfill leachate. Cooking oil is organic, but in volume it displaces landfill capacity and creates runoff risk — especially this close to the bay.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TROUBLESHOOT -->
+    <section class="section-block" id="troubleshoot">
+      <div class="section-header">
+        <div class="section-icon-block" style="background:var(--paper-warm);">🛠</div>
+        <div>
+          <h2>Troubleshooting</h2>
+          <p>Leaky jug? Wrong oil? Missed pickup? Here are the most common fixes.</p>
+        </div>
+      </div>
+
+      <div class="article-accordion">
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-amber">Common Issues</span>
+              <h3>Jug leaks, odors, and missed pickups</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <div class="steps">
+              <div class="step"><div class="step-num">?</div><div class="step-content"><strong>My jug leaked in the cabinet</strong><span>Check the cap seal — HDPE jugs can leak if the cap isn't fully threaded. Wipe the exterior, retighten the cap, store upright. If the jug is cracked, flag it at next pickup and we'll replace it at no cost.</span></div></div>
+              <div class="step"><div class="step-num">?</div><div class="step-content"><strong>My oil smells bad</strong><span>Used cooking oil does have an odor — this is normal. Storing it in a cabinet under the sink or pantry keeps smell contained. The sealed HDPE jug is designed to minimize this.</span></div></div>
+              <div class="step"><div class="step-num">?</div><div class="step-content"><strong>I missed my pickup day</strong><span>No action needed. Keep the full jug inside and set it out on the next cycle. If it's been more than 4 weeks without a pickup, reach out via the chatbot.</span></div></div>
+              <div class="step"><div class="step-num">?</div><div class="step-content"><strong>My neighbor wants to join</strong><span>Share the chatbot link or this website. They can self-enroll if their address is in the service zone.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-coral">Wrong Contents</span>
+              <h3>I put the wrong thing in the jug — what do I do?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>Don't panic. Here's what to do based on what got in:</p>
+            <div class="steps">
+              <div class="step"><div class="step-num">💧</div><div class="step-content"><strong>A small amount of water got in</strong><span>Tablespoon or two — not a problem. The batch can absorb minor water content. Just don't rinse the jug intentionally going forward.</span></div></div>
+              <div class="step"><div class="step-num">🥣</div><div class="step-content"><strong>Food scraps fell in</strong><span>Small amount: the consolidation strainer will catch it. Larger amount: leave a sticky note on the jug that says "Needs extra straining" before setting it out.</span></div></div>
+              <div class="step"><div class="step-num">⚠️</div><div class="step-content"><strong>Something non-food or chemical went in</strong><span>Do not put this jug out for regular pickup. Message the chatbot immediately. We'll arrange a separate pickup and handle disposal safely. Zero judgment — we just need to route it correctly.</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <button class="article-trigger" onclick="toggleArticle(this)">
+            <div class="article-trigger-left">
+              <span class="article-trigger-tag tag-green">Contact Us</span>
+              <h3>How do I reach GreenDrop?</h3>
+            </div>
+            <span class="article-chevron">▼</span>
+          </button>
+          <div class="article-body">
+            <p>The chatbot handles most questions in under a minute. For anything it can't resolve, it routes to a human — typically same-day response on weekdays.</p>
+            <div class="callout"><strong>Chatbot:</strong> Always available. &nbsp;<strong>Human response:</strong> Mon–Fri, 8am–6pm. Weekend contacts are reviewed Monday morning.</div>
+            <p>We also welcome program feedback — what's working, what's frustrating, what your neighbors are asking. That input directly shapes how the program expands.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CHATBOT CTA -->
+      <div class="chatbot-banner" id="chat">
+        <div class="chatbot-banner-icon">💬</div>
+        <div>
+          <h3>Still have a question?</h3>
+          <p>The GreenDrop assistant knows everything in this knowledge base and can look up your pickup schedule, enrolled address, or household impact stats.</p>
+        </div>
+        <a href="#" class="chatbot-banner-btn">Start a conversation →</a>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>GreenDrop</strong> — A community recycling pilot serving the Black Point Marina neighborhood, South Dade.</p>
+  <p style="margin-top:6px;">Cooking oil recycled here is sold to licensed South Florida buyers. Battery collections are routed to certified recycling facilities. Impact data is reported monthly.</p>
+</footer>
+
+<script>
+  function toggleArticle(btn) {
+    const card = btn.closest('.article-card');
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.article-card.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  function handleSearch() {
+    const q = document.getElementById('heroSearch').value.trim();
+    if (!q) return;
+    const lower = q.toLowerCase();
+    const map = [
+      { keys: ['bacon','lard','solid','coconut','fat'], id: 'cooking-oil' },
+      { keys: ['battery','batteries','9v','9-volt','button cell','aa','aaa'], id: 'batteries' },
+      { keys: ['pickup','schedule','swap','jug','when','day'], id: 'pickup' },
+      { keys: ['drain','sewer','bay','marina','environment','why','impact'], id: 'impact' },
+      { keys: ['strain','pack','fill','pour','how to'], id: 'packing' },
+      { keys: ['leak','smell','missed','wrong','help','problem'], id: 'troubleshoot' },
+    ];
+    let found = null;
+    for (const entry of map) {
+      if (entry.keys.some(k => lower.includes(k))) { found = entry.id; break; }
+    }
+    if (found) {
+      document.getElementById(found).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      document.getElementById('troubleshoot').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  document.getElementById('heroSearch').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSearch();
+  });
+
+  // Sidebar active state on scroll
+  const sections = ['cooking-oil','packing','batteries','pickup','impact','troubleshoot'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    sideLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
